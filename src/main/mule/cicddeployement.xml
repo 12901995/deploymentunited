@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="8bba993d-e37f-409f-9fad-e4061b2b9679" >
+		<http:listener-connection host="0.0.0.0" port="8083" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="6d03ed41-51ee-471f-802a-ac1c4606bfba" >
+		<http:request-connection host="mu.mulesoft-training.com" port="80" />
+	</http:request-config>
+	<flow name="cicddeployementFlow" doc:id="7979c339-6b6e-4bf6-9346-117c8aab02c8" >
+		<http:listener doc:name="Listener" doc:id="b1b84a30-d224-4c32-b031-ff48995805f0" config-ref="HTTP_Listener_config" path="/cicddeploy"/>
+		<http:request method="GET" doc:name="Request" doc:id="b5946796-16b1-42e2-8610-383d5e56b1f9" config-ref="HTTP_Request_configuration" path="/essentials/united/flights"/>
+	</flow>
+</mule>
